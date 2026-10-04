@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lakshay Bansal | Website Development</title>
+
+<style>
+:root{
+  --bg:#f5f8ff;
+  --card:#ffffff;
+  --text:#10213d;
+  --muted:#687890;
+  --primary:#1769ff;
+  --primary2:#62a5ff;
+  --border:#dfe8f5;
+  --shadow:0 20px 60px rgba(25,70,120,.12);
+}
+
+.dark{
+  --bg:#08111f;
+  --card:#101c2e;
+  --text:#f3f7ff;
+  --muted:#9aa9bd;
+  --border:#20324c;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  transition:.3s;
+}
+
+/* PROGRESS */
+.progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  background:linear-gradient(90deg,var(--primary),#8cc8ff);
+  z-index:9999;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:72px;
+  padding:0 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+
+.dark nav{
+  background:rgba(8,17,31,.82);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  color:var(--primary);
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:var(--text);
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.navlinks a{
+  text-decoration:none;
+  color:var(--text);
+  font-size:14px;
+  font-weight:700;
+}
+
+.navbtn{
+  border:0;
+  background:var(--card);
+  color:var(--text);
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  cursor:pointer;
+  border:1px solid var(--border);
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:150px 7% 80px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:50px;
+  align-items:center;
+  background:
+  radial-gradient(circle at 80% 20%,rgba(79,157,255,.22),transparent 32%),
+  radial-gradient(circle at 10% 80%,rgba(82,190,255,.12),transparent 30%);
+}
+
+.badge{
+  display:inline-block;
+  padding:9px 15px;
+  border-radius:30px;
+  background:rgba(23,105,255,.1);
+  color:var(--primary);
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(45px,7vw,78px);
+  line-height:.95;
+  margin-bottom:25px;
+}
+
+.hero h1 span{
+  color:var(--primary);
+}
+
+.typing{
+  color:var(--primary);
+  min-height:30px;
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.8;
+  max-width:650px;
+  margin-bottom:30px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 21px;
+  border-radius:13px;
+  border:0;
+  text-decoration:none;
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.primary{
+  background:var(--primary);
+  color:white;
+  box-shadow:0 12px 30px rgba(23,105,255,.25);
+}
+
+.secondary{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+/* HERO CARD */
+.heroVisual{
+  position:relative;
+}
+
+.dashboard{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:25px;
+  box-shadow:var(--shadow);
+  transform:rotate(1deg);
+}
+
+.dashboardTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.dots span{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--primary);
+  margin-right:5px;
+}
+
+.dashTitle{
+  font-weight:900;
+}
+
+.chart{
+  height:190px;
+  border-radius:20px;
+  padding:20px;
+  background:linear-gradient(145deg,#1769ff,#70b5ff);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.chart h2{
+  font-size:38px;
+}
+
+.chartLine{
+  height:55px;
+  display:flex;
+  align-items:end;
+  gap:8px;
+}
+
+.chartLine i{
+  display:block;
+  flex:1;
+  background:rgba(255,255,255,.75);
+  border-radius:8px 8px 0 0;
+}
+
+.chartLine i:nth-child(1){height:25%}
+.chartLine i:nth-child(2){height:45%}
+.chartLine i:nth-child(3){height:35%}
+.chartLine i:nth-child(4){height:70%}
+.chartLine i:nth-child(5){height:55%}
+.chartLine i:nth-child(6){height:90%}
+
+.miniGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+
+.mini{
+  padding:18px;
+  background:var(--bg);
+  border-radius:17px;
+}
+
+.mini b{
+  display:block;
+  font-size:21px;
+  color:var(--primary);
+}
+
+.mini small{
+  color:var(--muted);
+}
+
+/* GENERAL */
+section{
+  padding:95px 7%;
+}
+
+.sectionHead{
+  max-width:700px;
+  margin:0 auto 50px;
+  text-align:center;
+}
+
+.sectionHead h2{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.sectionHead p{
+  color:var(--muted);
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.stat{
+  padding:25px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.stat b{
+  display:block;
+  color:var(--primary);
+  font-size:32px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* SERVICES */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:27px;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:17px;
+  background:rgba(23,105,255,.1);
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+/* PORTFOLIO */
+.portfolio{
+  background:linear-gradient(135deg,rgba(23,105,255,.08),transparent);
+}
+
+.filters{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:30px;
+}
+
+.filter{
+  padding:10px 17px;
+  border-radius:30px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer;
+}
+
+.filter.active{
+  background:var(--primary);
+  color:white;
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.project{
+  min-height:270px;
+  border-radius:24px;
+  padding:25px;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+}
+
+.project:after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  right:-60px;
+  top:-60px;
+  background:rgba(255,255,255,.14);
+}
+
+.projectContent{
+  position:relative;
+  z-index:2;
+}
+
+.project h3{
+  font-size:28px;
+}
+
+.project p{
+  margin-top:7px;
+  opacity:.8;
+}
+
+.p1{background:linear-gradient(145deg,#071b43,#1769ff)}
+.p2{background:linear-gradient(145deg,#101a2c,#466a9d)}
+.p3{background:linear-gradient(145deg,#004263,#5dbfff)}
+.p4{background:linear-gradient(145deg,#15264c,#8b62ff)}
+.p5{background:linear-gradient(145deg,#153b45,#32a89b)}
+.p6{background:linear-gradient(145deg,#372044,#d06cff)}
+
+/* CALCULATOR */
+.calculator{
+  max-width:850px;
+  margin:auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.option{
+  margin-bottom:22px;
+}
+
+.option label{
+  display:block;
+  font-weight:800;
+  margin-bottom:9px;
+}
+
+select{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  outline:none;
+}
+
+.estimate{
+  margin-top:25px;
+  padding:22px;
+  border-radius:18px;
+  background:rgba(23,105,255,.08);
+  text-align:center;
+}
+
+.estimate b{
+  display:block;
+  color:var(--primary);
+  font-size:38px;
+}
+
+/* FAQ */
+.faq{
+  max-width:850px;
+  margin:auto;
+}
+
+.faqItem{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:12px;
+  overflow:hidden;
+}
+
+.question{
+  padding:20px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  font-weight:800;
+}
+
+.answer{
+  max-height:0;
+  overflow:hidden;
+  transition:.3s;
+  color:var(--muted);
+}
+
+.answer p{
+  padding:0 20px 20px;
+}
+
+/* CONTACT */
+.contactBox{
+  max-width:900px;
+  margin:auto;
+  padding:45px;
+  border-radius:30px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.contactGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.contactInfo h2{
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+.contactInfo p{
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+.contactInfo a{
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:800;
+}
+
+form input,
+form textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--bg);
+  color:var(--text);
+  outline:none;
+}
+
+form textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+/* FOOTER */
+footer{
+  padding:35px 7%;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  text-align:center;
+  color:var(--muted);
+}
+
+.footerLogo{
+  color:var(--primary);
+  font-size:23px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:5000;
+}
+
+.modalBox{
+  width:100%;
+  max-width:450px;
+  background:var(--card);
+  color:var(--text);
+  border-radius:25px;
+  padding:30px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  background:none;
+  border:0;
+  color:var(--text);
+  font-size:28px;
+  cursor:pointer;
+}
+
+.modalBox p{
+  color:var(--muted);
+  margin:15px 0 22px;
+  line-height:1.7;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,120px);
+  background:#10213d;
+  color:white;
+  padding:13px 20px;
+  border-radius:12px;
+  z-index:9000;
+  transition:.3s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+}
+
+/* TOP BUTTON */
+.top{
+  position:fixed;
+  bottom:25px;
+  right:20px;
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  display:none;
+  z-index:100;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+
+  nav{
+    padding:0 5%;
+  }
+
+  .navlinks a{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:125px 6% 60px;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .dashboard{
+    transform:none;
+  }
+
+  section{
+    padding:70px 6%;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .cards,
+  .projects{
+    grid-template-columns:1fr;
+  }
+
+  .contactGrid{
+    grid-template-columns:1fr;
+  }
+
+  .contactBox{
+    padding:28px 20px;
+  }
+
+  .sectionHead h2{
+    font-size:32px;
+  }
+}
+
+@media(max-width:450px){
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:50px;
+  }
+
+  .chart h2{
+    font-size:30px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+
+<!-- NAVBAR -->
+<nav>
+
+<div class="logo">
+LAKSHAY <span>BANSAL</span>
+</div>
+
+<div class="navlinks">
+
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#work">Work</a>
+<a href="#calculator">Pricing</a>
+<a href="#contact">Contact</a>
+
+<button class="navbtn" onclick="toggleTheme()" id="themeBtn">
+🌙
+</button>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<div>
+
+<div class="badge">
+⚡ WEBSITE DEVELOPMENT
+</div>
+
+<h1>
+Build a<br>
+<span>Powerful</span><br>
+Website.
+</h1>
+
+<div class="typing" id="typing"></div>
+
+<p>
+I create modern, responsive and professional websites
+for businesses, creators and personal brands.
+</p>
+
+<div class="buttons">
+
+<a href="#services" class="btn primary">
+Explore Services
+</a>
+
+<a href="#contact" class="btn secondary">
+Start a Project
+</a>
+
+</div>
+
+</div>
+
+
+<div class="heroVisual">
+
+<div class="dashboard">
+
+<div class="dashboardTop">
+
+<div class="dots">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="dashTitle">
+LAKSHAY.DEV
+</div>
+
+</div>
+
+<div class="chart">
+
+<small>WEBSITE PERFORMANCE</small>
+
+<h2>98%</h2>
+
+<div class="chartLine">
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+</div>
+
+</div>
+
+<div class="miniGrid">
+
+<div class="mini">
+<b>100%</b>
+<small>Responsive</small>
+</div>
+
+<div class="mini">
+<b>24/7</b>
+<small>Online</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+<section>
+
+<div class="stats">
+
+<div class="stat">
+<b class="counter" data-target="25">0</b>
+<span>Features</span>
+</div>
+
+<div class="stat">
+<b class="counter" data-target="100">0</b>
+<span>Responsive</span>
+</div>
+
+<div class="stat">
+<b class="counter" data-target="10">0</b>
+<span>Sections</span>
+</div>
+
+<div class="stat">
+<b>∞</b>
+<span>Possibilities</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+<div class="sectionHead">
+<h2>What I Can Build</h2>
+<p>
+Modern digital solutions designed for mobile and desktop.
+</p>
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">🌐</div>
+
+<h3>Business Website</h3>
+
+<p>
+Professional website for your company, shop,
+service or startup.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Business Website')">
+View Details
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🛒</div>
+
+<h3>Online Store</h3>
+
+<p>
+Product showcase, categories, pricing and
+customer contact features.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Online Store')">
+View Details
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎨</div>
+
+<h3>Portfolio</h3>
+
+<p>
+A premium personal portfolio to showcase
+skills, projects and achievements.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Portfolio Website')">
+View Details
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">📱</div>
+
+<h3>Landing Page</h3>
+
+<p>
+High-impact landing pages for products,
+services and campaigns.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Landing Page')">
+View Details
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎓</div>
+
+<h3>Course Website</h3>
+
+<p>
+Modern educational website for courses,
+lessons and digital content.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Course Website')">
+View Details
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🚀</div>
+
+<h3>Custom Project</h3>
+
+<p>
+Have a unique idea? We can design the
+website around your requirements.
+</p>
+
+<button class="btn primary"
+onclick="openModal('Custom Website')">
+View Details
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="work">
+
+<div class="sectionHead">
+<h2>Featured Projects</h2>
+<p>Creative website concepts and digital experiences.</p>
+</div>
+
+
+<div class="filters">
+
+<button class="filter active" onclick="filterProjects('all',this)">
+All
+</button>
+
+<button class="filter" onclick="filterProjects('business',this)">
+Business
+</button>
+
+<button class="filter" onclick="filterProjects('creative',this)">
+Creative
+</button>
+
+<button class="filter" onclick="filterProjects('store',this)">
+Store
+</button>
+
+</div>
+
+
+<div class="projects">
+
+
+<div class="project p1"
+data-category="business"
+onclick="openModal('Business Dashboard')">
+
+<div class="projectContent">
+<small>PROJECT 01</small>
+</div>
+
+<div class="projectContent">
+<h3>Business</h3>
+<p>Modern company website</p>
+</div>
+
+</div>
+
+
+<div class="project p2"
+data-category="creative"
+onclick="openModal('Creator Portfolio')">
+
+<div class="projectContent">
+<small>PROJECT 02</small>
+</div>
+
+<div class="projectContent">
+<h3>Creator</h3>
+<p>Personal portfolio</p>
+</div>
+
+</div>
+
+
+<div class="project p3"
+data-category="store"
+onclick="openModal('Online Store')">
+
+<div class="projectContent">
+<small>PROJECT 03</small>
+</div>
+
+<div class="projectContent">
+<h3>Store</h3>
+<p>Product showcase</p>
+</div>
+
+</div>
+
+
+<div class="project p4"
+data-category="creative"
+onclick="openModal('Creative Studio')">
+
+<div class="projectContent">
+<small>PROJECT 04</small>
+</div>
+
+<div class="projectContent">
+<h3>Studio</h3>
+<p>Creative landing page</p>
+</div>
+
+</div>
+
+
+<div class="project p5"
+data-category="business"
+onclick="openModal('Startup Website')">
+
+<div class="projectContent">
+<small>PROJECT 05</small>
+</div>
+
+<div class="projectContent">
+<h3>Startup</h3>
+<p>Digital business presence</p>
+</div>
+
+</div>
+
+
+<div class="project p6"
+data-category="store"
+onclick="openModal('Brand Store')">
+
+<div class="projectContent">
+<small>PROJECT 06</small>
+</div>
+
+<div class="projectContent">
+<h3>Brand</h3>
+<p>Modern online store</p>
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+<section id="calculator">
+
+<div class="sectionHead">
+<h2>Website Cost Calculator</h2>
+<p>Get an instant estimated starting price.</p>
+</div>
+
+
+<div class="calculator">
+
+<div class="option">
+
+<label>Website Type</label>
+
+<select id="siteType" onchange="calculate()">
+
+<option value="999">Landing Page — ₹999</option>
+<option value="2499">Business Website — ₹2,499</option>
+<option value="3999">Portfolio — ₹3,999</option>
+<option value="5999">Online Store — ₹5,999</option>
+<option value="7999">Custom Website — ₹7,999</option>
+
+</select>
+
+</div>
+
+
+<div class="option">
+
+<label>Extra Features</label>
+
+<select id="features" onchange="calculate()">
+
+<option value="0">Basic — ₹0</option>
+<option value="500">Animations — +₹500</option>
+<option value="1000">Advanced UI — +₹1,000</option>
+<option value="2000">Advanced Features — +₹2,000</option>
+
+</select>
+
+</div>
+
+
+<div class="estimate">
+
+Estimated Starting Price
+
+<b id="price">₹999</b>
+
+<button class="btn primary"
+onclick="orderEstimate()">
+Discuss This Website
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+<section>
+
+<div class="sectionHead">
+<h2>FAQ</h2>
+<p>Some common questions.</p>
+</div>
+
+
+<div class="faq">
+
+
+<div class="faqItem">
+
+<div class="question"
+onclick="faq(this)">
+How long does a website take?
+<span>+</span>
+</div>
+
+<div class="answer">
+<p>
+Simple websites can be developed faster than
+larger custom projects. The exact time depends
+on the features and content.
+</p>
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="question"
+onclick="faq(this)">
+Will it work on mobile?
+<span>+</span>
+</div>
+
+<div class="answer">
+<p>
+Yes. The design can be made responsive for
+Android, iPhone, tablets and desktop screens.
+</p>
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="question"
+onclick="faq(this)">
+Can I request custom features?
+<span>+</span>
+</div>
+
+<div class="answer">
+<p>
+Yes. Custom features can be discussed according
+to your project requirements.
+</p>
+</div>
+
+</div>
+
+
+<div class="faqItem">
+
+<div class="question"
+onclick="faq(this)">
+How can I contact Lakshay?
+<span>+</span>
+</div>
+
+<div class="answer">
+<p>
+You can call or message directly using the
+contact section below.
+</p>
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+
+<div class="contactBox">
+
+<div class="contactGrid">
+
+
+<div class="contactInfo">
+
+<h2>Let's Build Something.</h2>
+
+<p>
+Have a website idea? Send the details.
+Your message will open directly in WhatsApp.
+</p>
+
+<p>
+📱 <a href="tel:+919459606873">
++91 9459606873
+</a>
+</p>
+
+<br>
+
+<button class="btn secondary"
+onclick="copyNumber()">
+📋 Copy Number
+</button>
+
+</div>
+
+
+<form onsubmit="sendWhatsApp(event)">
+
+<input
+id="name"
+type="text"
+placeholder="Your Name"
+required>
+
+<input
+id="phone"
+type="tel"
+placeholder="Your Phone Number"
+required>
+
+<input
+id="project"
+type="text"
+placeholder="Website Type"
+required>
+
+<textarea
+id="message"
+placeholder="Tell me about your website..."
+required></textarea>
+
+<button class="btn primary" type="submit">
+🚀 Send Project
+</button>
+
+</form>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footerLogo">
+LAKSHAY BANSAL
+</div>
+
+<p>
+Website Development • Modern Digital Experiences
+</p>
+
+<br>
+
+<p>
+© 2026 Lakshay Bansal. All Rights Reserved.
+</p>
+
+</footer>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+<div class="modalBox">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<a
+class="btn primary"
+id="modalWhatsApp"
+target="_blank">
+💬 Discuss on WhatsApp
+</a>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+Copied!
+</div>
+
+
+<!-- TOP -->
+<button class="top" id="top"
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
+↑
+</button>
+
+
+<script>
+
+/* TYPING */
+const words=[
+"Modern Websites.",
+"Professional Designs.",
+"Digital Experiences.",
+"Business Solutions."
+];
+
+let wordIndex=0;
+let charIndex=0;
+let deleting=false;
+
+function typing(){
+
+const el=document.getElementById("typing");
+const word=words[wordIndex];
+
+if(!deleting){
+el.textContent=word.substring(0,charIndex+1);
+charIndex++;
+
+if(charIndex===word.length){
+deleting=true;
+setTimeout(typing,1200);
+return;
+}
+
+}else{
+
+el.textContent=word.substring(0,charIndex-1);
+charIndex--;
+
+if(charIndex===0){
+deleting=false;
+wordIndex=(wordIndex+1)%words.length;
+}
+
+}
+
+setTimeout(typing,deleting?50:90);
+}
+
+typing();
+
+
+/* DARK MODE */
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+const dark=document.body.classList.contains("dark");
+
+document.getElementById("themeBtn").textContent=
+dark?"☀️":"🌙";
+
+localStorage.setItem("theme",dark?"dark":"light");
+
+}
+
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark");
+document.getElementById("themeBtn").textContent="☀️";
+}
+
+
+/* SCROLL PROGRESS */
+window.addEventListener("scroll",()=>{
+
+const scrollTop=document.documentElement.scrollTop;
+
+const height=
+document.documentElement.scrollHeight-
+document.documentElement.clientHeight;
+
+document.getElementById("progress").style.width=
+(scrollTop/height*100)+"%";
+
+document.getElementById("top").style.display=
+scrollTop>500?"block":"none";
+
+});
+
+
+/* COUNTERS */
+const counters=document.querySelectorAll(".counter");
+
+let counterStarted=false;
+
+function startCounters(){
+
+if(counterStarted)return;
+
+if(window.scrollY>300){
+
+counterStarted=true;
+
+counters.forEach(counter=>{
+
+let target=+counter.dataset.target;
+let current=0;
+
+let timer=setInterval(()=>{
+
+current++;
+
+counter.textContent=current;
+
+if(current>=target){
+clearInterval(timer);
+}
+
+},20);
+
+});
+
+}
+
+}
+
+window.addEventListener("scroll",startCounters);
+
+
+/* MODAL */
+function openModal(title){
+
+document.getElementById("modalTitle").textContent=title;
+
+document.getElementById("modalText").textContent=
+"I can build a modern and responsive "+title+
+" according to your requirements. Contact Lakshay to discuss your project.";
+
+const msg=
+"Hello Lakshay, I am interested in "+title+
+". I want to discuss my website project.";
+
+document.getElementById("modalWhatsApp").href=
+"https://wa.me/919459606873?text="+
+encodeURIComponent(msg);
+
+document.getElementById("modal").style.display="flex";
+
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+document.getElementById("modal").addEventListener("click",function(e){
+
+if(e.target===this){
+closeModal();
+}
+
+});
+
+
+/* PORTFOLIO FILTER */
+function filterProjects(category,button){
+
+document.querySelectorAll(".filter")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+document.querySelectorAll(".project")
+.forEach(project=>{
+
+if(category==="all" ||
+project.dataset.category===category){
+
+project.style.display="flex";
+
+}else{
+
+project.style.display="none";
+
+}
+
+});
+
+}
+
+
+/* CALCULATOR */
+function calculate(){
+
+let base=
+Number(document.getElementById("siteType").value);
+
+let extra=
+Number(document.getElementById("features").value);
+
+let total=base+extra;
+
+document.getElementById("price").textContent=
+"₹"+total.toLocaleString("en-IN");
+
+}
+
+function orderEstimate(){
+
+let price=document.getElementById("price").textContent;
+
+let msg=
+"Hello Lakshay, I used the website calculator. My estimated website budget is "+price+". I want to discuss the project.";
+
+window.location.href=
+"https://wa.me/919459606873?text="+
+encodeURIComponent(msg);
+
+}
+
+
+/* FAQ */
+function faq(question){
+
+const answer=question.nextElementSibling;
+const icon=question.querySelector("span");
+
+if(answer.style.maxHeight){
+
+answer.style.maxHeight=null;
+icon.textContent="+";
+
+}else{
+
+answer.style.maxHeight=
+answer.scrollHeight+"px";
+
+icon.textContent="−";
+
+}
+
+}
+
+
+/* COPY NUMBER */
+function copyNumber(){
+
+navigator.clipboard.writeText("9459606873");
+
+showToast("📋 Number copied");
+
+}
+
+
+/* TOAST */
+function showToast(text){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=text;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2000);
+
+}
+
+
+/* CONTACT FORM */
+function sendWhatsApp(e){
+
+e.preventDefault();
+
+const name=
+document.getElementById("name").value;
+
+const phone=
+document.getElementById("phone").value;
+
+const project=
+document.getElementById("project").value;
+
+const message=
+document.getElementById("message").value;
+
+const text=
+"Hello Lakshay!%0A%0A"+
+"Name: "+name+"%0A"+
+"Phone: "+phone+"%0A"+
+"Website: "+project+"%0A"+
+"Message: "+message;
+
+window.location.href=
+"https://wa.me/919459606873?text="+
+encodeURIComponent(
+"Hello Lakshay!\n\n"+
+"Name: "+name+"\n"+
+"Phone: "+phone+"\n"+
+"Website: "+project+"\n"+
+"Message: "+message
+);
+
+}
+
+
+/* ESC CLOSE */
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+closeModal();
+}
+
+});
+
+</script>
+
+</body>
+</html>
